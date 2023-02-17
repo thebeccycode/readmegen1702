@@ -34,9 +34,10 @@ let {readmetitle, readmebio, installation, usage, tests, credits, licensing, con
         message: 'who do you need to credit?'
     },
     {
-        type: "input",
+        type: 'list',
         name: 'licensing',
-        message: 'what kind of license do you require?'
+        message: 'what kind of license do you require?',
+        choices: ['MIT License', 'Mozilla Public License 2.0', 'ISC License'],
     },
     {
         type: "input",
@@ -50,6 +51,8 @@ let {readmetitle, readmebio, installation, usage, tests, credits, licensing, con
     },
 
 ])
+
+
 
 let readmeinput = 
 `#Project Title
@@ -71,7 +74,7 @@ ${tests}
 ${credits} 
 
 ## Licensing 
-${licensing}
+${generateLicense(licensing)}
 
 ## Contributions
 ${contributions}
@@ -81,4 +84,15 @@ ${questions}
 `
 
 fs.writeFile("README.md", readmeinput)
+
+function generateLicense(licensing){
+    if (licensing === 'MIT License'){
+        return "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)"
+    } else (licensing === 'Mozilla Public License 2.0'); {
+        return "[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)"
+    }
+};
+
+//MIT License', 'Mozilla Public License 2.0', 'ISC License'
+
 console.log(readmetitle, readmebio, installation, usage, tests, credits, licensing, contributions, questions);
