@@ -52,8 +52,6 @@ let {readmetitle, readmebio, installation, usage, tests, credits, licensing, con
 
 ])
 
-
-
 let readmeinput = 
 `#Project Title
 ${readmetitle}
@@ -83,7 +81,7 @@ ${contributions}
 ${questions}
 `
 
-fs.writeFile("README.md", readmeinput)
+await fs.writeFile("README.md", readmeinput)
 
 function generateLicense(licensing){
     if (licensing === 'MIT License'){
